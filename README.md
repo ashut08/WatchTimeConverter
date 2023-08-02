@@ -2,7 +2,8 @@
 
 A Flutter app that allows users to convert time between different timezones. Users can select a timezone from a dropdown and input a custom date and time for conversion.
 
-![App Screenshot]<img src="ezgif-5-7f5a73670f.gif" width="128"/>
+![App Screenshot]
+<img src="ezgif-5-7f5a73670f.gif"/>
 
 
 ## Features
