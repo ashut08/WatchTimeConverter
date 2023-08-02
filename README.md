@@ -1,17 +1,27 @@
-# timeconverter
+# Timezone Converter App
 
-A new Flutter project.
+A Flutter app that allows users to convert time between different timezones. Users can select a timezone from a dropdown and input a custom date and time for conversion.
+
+![App Screenshot]<img src="ezgif-5-7f5a73670f.gif" width="128"/>
+
+
+## Features
+
+- Select a timezone from a dropdown list.
+- View the converted time based on the selected timezone.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Follow these steps to get the app up and running on your local machine.
 
-A few resources to get you started if this is your first Flutter project:
+### Prerequisites
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Flutter SDK
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# WatchTimeConverter
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/timezone-converter-app.git
+cd timezone-converter-app

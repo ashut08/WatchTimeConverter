@@ -84,6 +84,8 @@ class _ActiveModeState extends State<ActiveMode> {
       _selectedTimezone = newTimezone!;
     });
     if (kDebugMode) {
+      DateFormat('yyyy-MMMM-dd  hh:mm a')
+          .format(tz.TZDateTime.now(tz.getLocation(_selectedTimezone)));
       print(
         'Converted Time: ${tz.TZDateTime.now(tz.getLocation(_selectedTimezone)).toString()}',
       );
@@ -111,71 +113,39 @@ class _ActiveModeState extends State<ActiveMode> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                TextField(
-                  controller: _dateTimeController,
-                  // decoration:
-                  //     const InputDecoration(labelText: 'Enter Date and Time'),
-                  keyboardType: TextInputType.datetime,
-                  onTap: () async {
-                    // Show date and time picker when the text field is tapped
-                    // DateTime? pickedDateTime = await showDatePicker(
-                    //   context: context,
-                    //   initialDate: DateTime.now(),
-                    //   initialEntryMode: DatePickerEntryMode.inputOnly,
-                    //   firstDate: DateTime.now(),
-                    //   lastDate: DateTime.now().add(const Duration(days: 356)),
-                    //   builder: (context, child) {
-                    //     return Column(
-                    //       children: <Widget>[
-                    //         SizedBox(
-                    //           height: 300,
-                    //           // width: 300,
-                    //           child: child,
-                    //         ),
-                    //       ],
-                    //     );
-                    //   },
-                    // );
-                    DateTime? pickedDateTime = DateTime.now();
-                    // ignore: use_build_context_synchronously
-                    TimeOfDay? pickedTime = await showTimePicker(
-                      initialEntryMode: TimePickerEntryMode.inputOnly,
-                      context: context,
-                      initialTime: TimeOfDay.now(),
-                    );
-                    if (pickedTime != null) {
-                      DateTime combinedDateTime = DateTime(
-                        pickedDateTime.year,
-                        pickedDateTime.month,
-                        pickedDateTime.day,
-                        pickedTime.hour,
-                        pickedTime.minute,
+                Center(
+                  child: Text(
+                    "Today Date And Time is:\n ${DateFormat('yyyy-MMMM-dd  hh:mm a').format(DateTime.now())}",
+                    style: const TextStyle(fontSize: 10),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "Select Time Zone",
+                  style: TextStyle(fontSize: 10),
+                ),
+                Center(
+                  child: DropdownButton<String>(
+                    style: const TextStyle(fontSize: 10, color: Colors.black),
+                    value: _selectedTimezone,
+                    onChanged: _onTimezoneChanged,
+                    items: tz.timeZoneDatabase.locations.keys
+                        .map((String timezone) {
+                      return DropdownMenuItem<String>(
+                        value: timezone,
+                        child: Text(timezone),
                       );
-                      setState(() {
-                        _dateTimeController.text =
-                            DateFormat('yyyy-MM-dd HH:mm')
-                                .format(combinedDateTime);
-                      });
-                    }
-                  },
+                    }).toList(),
+                  ),
                 ),
-                DropdownButton<String>(
-                  style: const TextStyle(fontSize: 10, color: Colors.black),
-                  value: _selectedTimezone,
-                  onChanged: _onTimezoneChanged,
-                  items:
-                      tz.timeZoneDatabase.locations.keys.map((String timezone) {
-                    return DropdownMenuItem<String>(
-                      value: timezone,
-                      child: Text(timezone),
-                    );
-                  }).toList(),
-                ),
-                if (_dateTimeController.text != "" ||
-                    _dateTimeController.text.isNotEmpty)
-                  Text(
-                    'Converted Time: ${tz.TZDateTime.from(DateTime.parse(_dateTimeController.text), tz.getLocation(_selectedTimezone)).toString()}',
-                  )
+                Center(
+                  child: Text(
+                    'Converted Time in $_selectedTimezone: \n${DateFormat('yyyy-MMMM-dd  hh:mm a').format(tz.TZDateTime.from(DateTime.now(), tz.getLocation(_selectedTimezone)))}',
+                    style: const TextStyle(fontSize: 10),
+                  ),
+                )
               ],
             ),
           ),
