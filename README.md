@@ -11,6 +11,10 @@ A Flutter app that allows users to convert time between different timezones. Use
 - Select a timezone from a dropdown list.
 - View the converted time based on the selected timezone.
 
+## Article Link
+(https://talent500.co/blog/building-wear-os-apps-with-flutter/)
+
+
 ## Getting Started
 
 Follow these steps to get the app up and running on your local machine.
